@@ -69,7 +69,7 @@ pipeline {
                         sh "cat my-app.yaml"
                         sh "sed -i -e 's+project1-2023.*+project1-2023:${env.BUILD_NUMBER}+g'  my-app.yaml"
                         sh "cat my-app.yaml"
-                        sh " git add . "
+                        sh " git add ."
                         sh " git commit -m 'Updated the deployment file'"
                         sh "git push http://$GIT_USERNAME:$GIT_PASSWORD@github.com/devopstrainingschool/project1-2023-deployment.git master"
                       }
