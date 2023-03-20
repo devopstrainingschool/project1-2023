@@ -62,7 +62,7 @@ pipeline {
                     git config --global user.name "devopstrainingschool"
                     git config --global user.email "devopstrainingschool@gmail.com" """
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                     
+                      dir("project1-2023-deployment"){
                         sh "pwd"
                         sh "echo $BUILD_NUMBER"
                         sh "cat my-app.yaml"
@@ -71,7 +71,7 @@ pipeline {
                         sh " git add . "
                         sh " git commit -m 'Updated the deployment file'"
                         sh "git push http://$GIT_USERNAME:$GIT_PASSWORD@git@github.com:devopstrainingschool/project1-2023-deployment.git master"
-             
+                      }
                       
              
                     }
