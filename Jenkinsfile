@@ -43,6 +43,7 @@ pipeline {
                 script{
                   catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+              sh "rm -rf project1-2023-deployment"       
               sh "git clone https://github.com/devopstrainingschool/project1-2023-deployment.git"
               
             
