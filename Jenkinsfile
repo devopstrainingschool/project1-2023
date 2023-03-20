@@ -16,6 +16,13 @@ pipeline {
       }
       
     }
+    
+    stage ("maven package") {
+      steps {
+        sh 'mvn package'
+      }
+      
+    }
   
   
   
