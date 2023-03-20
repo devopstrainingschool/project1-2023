@@ -38,8 +38,51 @@ pipeline {
     }
       
       }
-    
+    stage('Github clone the project1-2023-deployment'){
+            steps {
+                script{
+                  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+              sh "git clone https://github.com/devopstrainingschool/project1-2023-deployment.git"
+              
+            
+             
+                    }
+                  }
+                }
+            }
+        }
   
+    stage('Make yaml files changes & push them to Github'){
+            steps {
+                script{
+                  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    
+                     sh """
+                    git config --global user.name "devopstrainingschool"
+                    git config --global user.email "devopstrainingschool@gmail.com" """
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                     
+                        sh "pwd"
+                        sh "echo $BUILD_NUMBER"
+                        sh "cat my-app.yaml"
+                        sh "sed -i -e 's+project1-2023.*+project1-2023:${env.BUILD_NUMBER}+g'  my-app.yaml"
+                        sh "cat my-app.yaml"
+                        sh " git add . "
+                        sh " git commit -m 'Updated the deployment file'"
+                        sh "git push http://$GIT_USERNAME:$GIT_PASSWORD@github.com/devopstrainingschool/k8s-all-p1.git master"
+             
+                      
+             
+                    }
+                  }
+                }
+            }
+        }
+    
+
+    
+    
   
   }
 
