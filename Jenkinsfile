@@ -71,7 +71,7 @@ pipeline {
                         sh "cat my-app.yaml"
                         sh " git add ."
                         sh " git commit -m 'Updated the deployment file'"
-                        sh "git push http://$GIT_USERNAME:$GIT_PASSWORD@github.com/devopstrainingschool/project1-2023-deployment.git master"
+                        sh "git push http://$GIT_USERNAME:$GIT_PASSWORD@https://github.com/devopstrainingschool/project1-2023-deployment.git master"
                       }
                       
              
