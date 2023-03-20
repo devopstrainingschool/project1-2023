@@ -23,7 +23,12 @@ pipeline {
       }
       
     }
-  
+   stage ("Docker build") {
+      steps {
+        sh 'docker build -t devopstrainingschool/project1-2023:IMAGE_TAG .'
+      }
+      
+    }
   
   
   
