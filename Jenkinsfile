@@ -29,7 +29,16 @@ pipeline {
       }
       
     }
-  
+    stage ("Docker push to dockerhub") {
+      steps {
+        withDockerRegistry([ credentialsId: "docker_creds" , url: "https://index.docker.io/v1/" ]){
+          sh 'docker push devopstrainingschool/project1-2023:IMAGE_TAG'
+        }
+      
+    }
+      
+      }
+    
   
   
   }
