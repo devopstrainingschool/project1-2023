@@ -67,7 +67,7 @@ pipeline {
                         sh "pwd"
                         sh "echo $BUILD_NUMBER"
                         sh "cat my-app.yaml"
-                        sh "sed -i -e 's+project1-2023.*+project1-2023:${env.BUILD_NUMBER}+g'  my-app.yaml"
+                        sh "sed -i -e 's+devopstrainingschool/project1-2023.*+devopstrainingschool/project1-2023:${env.BUILD_NUMBER}+g'  my-app.yaml"
                         sh "cat my-app.yaml"
                         sh " git add ."
                         sh " git commit -m 'Updated the deployment file'"
